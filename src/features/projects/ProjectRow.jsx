@@ -64,8 +64,7 @@ function ProjectRow({ project, index }) {
               open={isDeleteOpen}
               onClose={() => setIsDeleteOpen(false)}
             >
-              <ConfirmDelete
-                resourceName={project.title}
+              <ConfirmDelete  resourceName={project.title}
                 onClose={() => setIsDeleteOpen(false)}
                 onConfirm={() =>
                   removeProject(project._id, {
@@ -77,6 +76,7 @@ function ProjectRow({ project, index }) {
             </Modal>
           </>
         </div>
+        <br/>
       </td>
       <td>
         <Link to={project._id} className="flex justify-center">
