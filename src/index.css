@@ -108,9 +108,9 @@
     @apply bg-red-500 text-white;
   }
 }
-
 html,
 body {
+  direction: ltr ;
   padding: 0;
   margin: 0;
   font-family: "Vazir";

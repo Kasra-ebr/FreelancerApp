@@ -9,16 +9,16 @@ function ProposalTable() {
 
   if (isLoading) return <Loading />;
 
-  if (!proposals.length) return <Empty resourceName="پروپوزال" />;
+  if (!proposals?.length) return <Empty resourceName="proposal" />;
 
   return (
     <Table>
       <Table.Header>
         <th>#</th>
-        <th>توضیحات</th>
-        <th>زمان تحویل</th>
-        <th>هزینه</th>
-        <th>وضعیت</th>
+        <th>Description</th>
+        <th>Delivery Time</th>
+        <th>Cost</th>
+        <th>Status</th>
       </Table.Header>
       <Table.Body>
         {proposals.map((proposal, index) => (
@@ -28,4 +28,5 @@ function ProposalTable() {
     </Table>
   );
 }
+
 export default ProposalTable;

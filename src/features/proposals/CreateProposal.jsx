@@ -4,11 +4,7 @@ import Loading from "../../ui/Loading";
 import useCreateProposal from "./useCreateProposal";
 
 function CreateProposal({ onClose, projectId }) {
-  const {
-    handleSubmit,
-    register,
-    formState: { errors },
-  } = useForm();
+  const { handleSubmit, register, formState: { errors } } = useForm();
   const { createProposal, isCreating } = useCreateProposal();
 
   const onSubmit = (data) => {
@@ -25,38 +21,38 @@ function CreateProposal({ onClose, projectId }) {
     <div>
       <form className="space-y-8" onSubmit={handleSubmit(onSubmit)}>
         <TextField
-          label="توضیحات"
+          label="Description"
           name="description"
           register={register}
           required
           validationSchema={{
-            required: "توضیحات ضروری است",
+            required: "Description is required",
             minLength: {
               value: 10,
-              message: "حداقل 10 کاراکتر را وارد کنید",
+              message: "Enter at least 10 characters",
             },
           }}
           errors={errors}
         />
         <TextField
-          label="قیمت"
+          label="Price"
           name="price"
           type="number"
           register={register}
           required
           validationSchema={{
-            required: "قیمت ضروری است",
+            required: "Price is required",
           }}
           errors={errors}
         />
         <TextField
-          label="مدت زمان"
+          label="Duration"
           name="duration"
           type="number"
           register={register}
           required
           validationSchema={{
-            required: "مدت زمان ضروری است",
+            required: "Duration is required",
           }}
           errors={errors}
         />
@@ -65,7 +61,7 @@ function CreateProposal({ onClose, projectId }) {
             <Loading />
           ) : (
             <button type="submit" className="btn btn--primary w-full">
-              تایید
+              Confirm
             </button>
           )}
         </div>
@@ -73,4 +69,5 @@ function CreateProposal({ onClose, projectId }) {
     </div>
   );
 }
+
 export default CreateProposal;

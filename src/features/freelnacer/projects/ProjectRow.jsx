@@ -9,11 +9,11 @@ import CreateProposal from "../../proposals/CreateProposal";
 
 const projectStatus = {
   OPEN: {
-    label: "باز",
+    label: "Open",
     className: "badge--success",
   },
   CLOSED: {
-    label: "بسته",
+    label: "Closed",
     className: "badge--danger",
   },
 };
@@ -26,8 +26,8 @@ function ProjectRow({ project, index }) {
     <Table.Row>
       <td>{index + 1}</td>
       <td>{truncateText(title, 30)}</td>
-      <td>{toPersianNumbersWithComma(budget)}</td>
-      <td>{toLocalDateShort(deadline)}</td>
+      <td>{budget}</td>
+      <td>{deadline.slice(0,10)}</td>
       <td>
         <span className={`badge ${projectStatus[status].className}`}>
           {projectStatus[status].label}
@@ -37,7 +37,7 @@ function ProjectRow({ project, index }) {
         <Modal
           open={open}
           onClose={() => setOpen(false)}
-          title={`درخواست انجام پروژه ${title}`}
+          title={`Project Proposal Request: ${title}`}
         >
           <CreateProposal
             projectId={project._id}

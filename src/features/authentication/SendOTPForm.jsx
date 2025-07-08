@@ -6,7 +6,7 @@ function SendOTPForm({ onSubmit, isSendingOtp, register }) {
     <div>
       <form className="space-y-10" onSubmit={onSubmit}>
         <TextField
-          label="شماره موبایل"
+          label="Phonenumber"
           name="phoneNumber"
           register={register}
         />

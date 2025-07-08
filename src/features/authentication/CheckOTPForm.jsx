@@ -27,12 +27,11 @@ function CheckOTPForm({ phoneNumber, onBack, onReSendOtp, otpResponse }) {
       if (!user.isActive) return navigate("/complete-profile");
       if (Number(user.status) !== 2) {
         navigate("/");
-        toast("پروفایل شما در انتظار تایید است", { icon: "👏" });
+        toast("Your profile is pending approval", { icon: "👏" });
         return;
       }
       if (user.role === "OWNER") return navigate("/owner");
       if (user.role === "FREELANCER") return navigate("/freelancer");
-      
     } catch (error) {
       toast.error(error?.response?.data?.message);
     }
@@ -61,13 +60,13 @@ function CheckOTPForm({ phoneNumber, onBack, onReSendOtp, otpResponse }) {
       )}
       <div className="mb-4 text-secondary-500">
         {time > 0 ? (
-          <p> {time} ثانیه تا ارسال مجدد کد</p>
+          <p> {time} seconds until resend code</p>
         ) : (
-          <button onClick={onReSendOtp}>ارسال مجدد کد تایید</button>
+          <button onClick={onReSendOtp}>Resend verification code</button>
         )}
       </div>
       <form className="space-y-10" onSubmit={chckOtpHandler}>
-        <p className="font-bold text-secondary-800">کد تایید را وارد کنید</p>
+        <p className="font-bold text-secondary-800">Enter the verification code</p>
         <OTPInput
           value={otp}
           onChange={setOtp}
@@ -87,7 +86,7 @@ function CheckOTPForm({ phoneNumber, onBack, onReSendOtp, otpResponse }) {
             <Loading />
           ) : (
             <button type="submit" className="btn btn--primary w-full">
-              تایید
+              Confirm
             </button>
           )}
         </div>

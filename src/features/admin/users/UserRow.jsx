@@ -5,15 +5,15 @@ import ChangeUserStatus from "./ChangeUserStatus";
 
 const statusStyle = [
   {
-    label: "رد شده",
+    label: "Rejected",
     className: "badge--danger",
   },
   {
-    label: "در انتظار تایید",
+    label: "Pending Approval",
     className: "badge--secondary",
   },
   {
-    label: "تایید شده",
+    label: "Approved",
     className: "badge--success",
   },
 ];
@@ -36,7 +36,7 @@ function UserRow({ user, index }) {
       </td>
       <td>
         <Modal
-          title="تغییر وضعیت کاربر"
+          title="Change User Status"
           open={open}
           onClose={() => setOpen(false)}
         >
@@ -45,10 +45,9 @@ function UserRow({ user, index }) {
             onClose={() => setOpen(false)}
           />
         </Modal>
-        <button onClick={() => setOpen(true)}>تغییر وضعیت</button>
+        <button onClick={() => setOpen(true)}>Change Status</button>
       </td>
     </Table.Row>
   );
 }
 export default UserRow;
-

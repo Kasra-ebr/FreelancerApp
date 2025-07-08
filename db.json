@@ -1,0 +1,39 @@
+
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "Kasra",
+      "email": "kasra@example.com",
+      "phoneNumber": "09123456789",
+      "role": "user",
+      "status": 1
+    },
+    {
+      "id": "2",
+      "name": "Ali",
+      "email": "ali@example.com",
+      "phoneNumber": "09221234567",
+      "role": "admin",
+      "status": 2
+    }
+  ],
+  "proposals": [
+    {
+      "id": "101",
+      "user": { "name": "Kasra" },
+      "description": "ساخت صفحه اصلی وب‌سایت",
+      "duration": 7,
+      "price": 500000,
+      "status": 1
+    },
+    {
+      "id": "102",
+      "user": { "name": "Ali" },
+      "description": "طراحی بخش داشبورد ادمین",
+      "duration": 10,
+      "price": 750000,
+      "status": 2
+    }
+  ]
+}

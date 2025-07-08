@@ -23,7 +23,7 @@ function ToggleProjectStatus({ project }) {
       ) : (
         <Toggle
           enabled={status === "OPEN" ? true : false}
-          label={status === "OPEN" ? "باز" : "بسته"}
+          label={status === "OPEN" ? "OPEN" : "CLOSE"}
           onChange={toggleHandler}
         />
       )}

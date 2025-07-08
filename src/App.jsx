@@ -31,14 +31,7 @@ function App() {
         <Routes>
           <Route path="/auth" element={<Auth />} />
           <Route path="/complete-profile" element={<CompleteProfile />} />
-          <Route
-            path="/owner"
-            element={
-              <ProtectedRoute>
-                <OwnerLayout />
-              </ProtectedRoute>
-            }
-          >
+          <Route path="/owner"element={<OwnerLayout />  }  >
             <Route index element={<Navigate to="dashboard" replace />} />
             <Route path="dashboard" element={<OwnerDashboard />} />
             <Route path="projects" element={<Projects />} />
@@ -47,9 +40,9 @@ function App() {
           <Route
             path="/freelancer"
             element={
-              <ProtectedRoute>
+           
                 <FreelancerLayout />
-              </ProtectedRoute>
+           
             }
           >
             <Route index element={<Navigate to="dashboard" replace />} />
@@ -60,9 +53,9 @@ function App() {
           <Route
             path="/admin"
             element={
-              <ProtectedRoute>
+            
                 <AdminLayout />
-              </ProtectedRoute>
+    
             }
           >
             <Route index element={<Navigate to="dashboard" replace />} />

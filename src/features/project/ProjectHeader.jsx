@@ -9,7 +9,7 @@ function ProjectHeader({ project }) {
         <HiArrowRight className="w-5 h-5 text-secondary-500" />
       </button>
       <h1 className="font-black text-secondary-700 text-xl">
-        لیست درخواست های {project.title}
+        Request List for {project.title}
       </h1>
     </div>
   );

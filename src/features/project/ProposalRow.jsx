@@ -12,15 +12,15 @@ import {
 
 const statusStyle = [
   {
-    label: "رد شده",
+    label: "Rejected",
     className: "badge--danger",
   },
   {
-    label: "در انتظار تایید",
+    label: "Pending Approval",
     className: "badge--secondary",
   },
   {
-    label: "تایید شده",
+    label: "Approved",
     className: "badge--success",
   },
 ];
@@ -35,8 +35,8 @@ function ProposalRow({ proposal, index }) {
       <td>
         <p>{truncateText(proposal.description, 50)}</p>
       </td>
-      <td>{toPersianNumbers(proposal.duration)} روز</td>
-      <td>{toPersianNumbersWithComma(proposal.price)}</td>
+      <td>{proposal.duration} days</td>
+      <td>{proposal.price}</td>
       <td>
         <span className={`badge ${statusStyle[status].className}`}>
           {statusStyle[status].label}
@@ -44,7 +44,7 @@ function ProposalRow({ proposal, index }) {
       </td>
       <td>
         <Modal
-          title="تغییر وضعیت درخواست"
+          title="Change Proposal Status"
           open={open}
           onClose={() => setOpen(false)}
         >
@@ -53,7 +53,7 @@ function ProposalRow({ proposal, index }) {
             onClose={() => setOpen(false)}
           />
         </Modal>
-        <button onClick={() => setOpen(true)}>تغییر وضعیت</button>
+        <button onClick={() => setOpen(true)}>Change Status</button>
       </td>
     </Table.Row>
   );

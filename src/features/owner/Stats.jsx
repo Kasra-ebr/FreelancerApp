@@ -6,9 +6,9 @@ import {
 import Stat from "../../ui/Stat";
 
 function Stats({ projects }) {
-  const numOfProjects = projects.length;
-  const numOfAcceptedProjects = projects.filter((p) => p.status === 2).length;
-  const numOfProposals = projects.reduce(
+  const numOfProjects = projects?.length;
+  const numOfAcceptedProjects = projects?.filter((p) => p.status === 2).length;
+  const numOfProposals = projects?.reduce(
     (acc, curr) => curr.proposals.length + acc,
     0
   );
@@ -17,19 +17,19 @@ function Stats({ projects }) {
     <div className="grid grid-cols-3 gap-8">
       <Stat
         color="primary"
-        title="پروژه ها"
+        title="Projects"
         value={numOfProjects}
         icon={<HiOutlineViewGrid className="w-20 h-20" />}
       />
       <Stat
         color="green"
-        title="پروژه های واگذار شده"
+        title="Assigned Projects"
         value={numOfAcceptedProjects}
         icon={<HiCurrencyDollar className="w-20 h-20" />}
       />
       <Stat
         color="orange"
-        title="درخواست ها"
+        title="Proposals"
         value={numOfProposals}
         icon={<HiCollection className="w-20 h-20" />}
       />

@@ -28,7 +28,7 @@ function CompleteProfileFrom() {
       toast.success(message);
       if (!user.status !== 2) {
         navigate("/");
-        toast("پروفایل شما در انتظار تایید است", { icon: "👏" });
+        toast("Your profile is pending approval", { icon: "👏" });
         return;
       }
       if (user.role === "OWNER") return navigate("/owner");
@@ -40,27 +40,27 @@ function CompleteProfileFrom() {
 
   return (
     <div className="flex flex-col gap-y-6 items-center pt-10">
-      <h1 className="font-bold text-3xl text-secondary-700">تکمیل اطلاعات</h1>
+      <h1 className="font-bold text-3xl text-secondary-700">Complete Information</h1>
       <div className="w-full sm:max-w-sm">
         <form className="space-y-8" onSubmit={handleSubmit(onSubmit)}>
           <TextField
-            label="نام و نام خانوادگی"
+            label="Full Name"
             name="name"
             register={register}
             validationSchema={{
-              required: "نام و نام خانوادگی  ضروری است",
+              required: "Full name is required",
             }}
             errors={errors}
           />
           <TextField
-            label="ایمیل"
+            label="Email"
             name="email"
             register={register}
             validationSchema={{
-              required: "ایمیل ضروری است",
+              required: "Email is required",
               pattern: {
                 value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                message: "ایمیل نامعتبر است",
+                message: "Invalid email address",
               },
             }}
             errors={errors}
@@ -71,13 +71,13 @@ function CompleteProfileFrom() {
             watch={watch}
             configs={{
               name: "role",
-              validationSchema: { required: "انتخاب نقش ضروری است" },
+              validationSchema: { required: "Role selection is required" },
               options: [
                 {
                   value: "OWNER",
-                  label: "کارفرما",
+                  label: "Employer",
                 },
-                { value: "FREELANCER", label: "فریلنسر" },
+                { value: "FREELANCER", label: "Freelancer" },
               ],
             }}
           />
@@ -86,7 +86,7 @@ function CompleteProfileFrom() {
               <Loading />
             ) : (
               <button type="submit" className="btn btn--primary w-full">
-                تایید
+                Submit
               </button>
             )}
           </div>

@@ -21,25 +21,28 @@ function CreateProjectForm({ onClose, projectToEdit = {} }) {
     deadline,
     tags: prevTags,
   } = projectToEdit;
-  let editValues = {};
-  if (isEditSession) {
-    editValues = {
-      title,
-      description,
-      budget,
-      category: category._id,
-    };
-  }
+
+  const editValues = isEditSession
+    ? {
+        title,
+        description,
+        budget,
+        category: category?._id,
+      }
+    : {};
 
   const {
     register,
     formState: { errors },
     handleSubmit,
     reset,
-  } = useForm({ defaultValues: editValues });
+  } = useForm({
+    defaultValues: editValues,
+  });
 
   const [tags, setTags] = useState(prevTags || []);
-  const [date, setDate] = useState(new Date(deadline || ""));
+  const [date, setDate] = useState(deadline ? new Date(deadline) : new Date());
+
   const { categories } = useCategories();
   const { isCreating, createProject } = useCreateProject();
   const { editProject, isEditing } = useEditProject();
@@ -51,89 +54,82 @@ function CreateProjectForm({ onClose, projectToEdit = {} }) {
       tags,
     };
 
+    const onSuccess = () => {
+      onClose();
+      reset();
+    };
+
     if (isEditSession) {
-      editProject(
-        { id: editId, newProject },
-        {
-          onSuccess: () => {
-            onClose();
-            reset();
-          },
-        }
-      );
+      editProject({ id: editId, newProject }, { onSuccess });
     } else {
-      createProject(newProject, {
-        onSuccess: () => {
-          onClose();
-          reset();
-        },
-      });
+      createProject(newProject, { onSuccess });
     }
   };
 
   return (
     <form className="space-y-8" onSubmit={handleSubmit(onSubmit)}>
       <TextField
-        label="عنوان"
+        label="Title"
         name="title"
         register={register}
         required
         validationSchema={{
-          required: "عنوان ضروری است",
+          required: "Title is required",
           minLength: {
             value: 10,
-            message: "حداقل 10 کاراکتر را وارد کنید",
+            message: "Enter at least 10 characters",
           },
         }}
         errors={errors}
       />
       <TextField
-        label="توضیحات"
+        label="Description"
         name="description"
         register={register}
         required
         validationSchema={{
-          required: "توضیحات ضروری است",
+          required: "Description is required",
           minLength: {
             value: 15,
-            message: "حداقل 15 کاراکتر را وارد کنید",
+            message: "Enter at least 15 characters",
           },
         }}
         errors={errors}
       />
       <TextField
-        label="بودجه"
+        label="Budget"
         name="budget"
         type="number"
         register={register}
         required
         validationSchema={{
-          required: "بودجه ضروری است",
+          required: "Budget is required",
         }}
         errors={errors}
       />
       <RHFSelect
-        label="دسته بندی"
+        label="Category"
         required
         name="category"
         register={register}
         options={categories}
       />
       <div>
-        <label className="mb-2 block text-secondary-700">تگ</label>
+        <label className="mb-2 block text-secondary-700">Tags</label>
         <TagsInput value={tags} onChange={setTags} name="tags" />
       </div>
-      <DatePickerField date={date} setDate={setDate} label="ددلاین" />
+      <DatePickerField date={date} setDate={setDate} label="Deadline" />
       <div className="!mt-8">
         {isCreating || isEditing ? (
           <Loading />
         ) : (
           <button type="submit" className="btn btn--primary w-full">
-            تایید
+            Confirm
           </button>
         )}
       </div>
     </form>
   );
 }
+
 export default CreateProjectForm;

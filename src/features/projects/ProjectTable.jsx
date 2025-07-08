@@ -9,21 +9,21 @@ function ProjectTable() {
 
   if (isLoading) return <Loading />;
 
-  if (!projects.length) return <Empty resourceName="پروژه" />;
+  if (!projects?.length) return <Empty resourceName="project" />;
 
   return (
     <Table>
       <Table.Header>
         <th>#</th>
-        <th>عنوان پروژه</th>
-        <th>دسته بندی</th>
-        <th>بودجه</th>
-        <th>ددلاین</th>
-        <th>تگ ها</th>
-        <th>فریلنسر</th>
-        <th>وضعیت</th>
-        <th>عملیات</th>
-        <th>درخواست ها</th>
+        <th>Project Title</th>
+        <th>Category</th>
+        <th>Budget</th>
+        <th>Deadline</th>
+        <th>Tags</th>
+        <th>Freelancer</th>
+        <th>Status</th>
+        <th>Actions</th>
+        <th>Requests</th>
       </Table.Header>
       <Table.Body>
         {projects.map((project, index) => (
@@ -33,4 +33,5 @@ function ProjectTable() {
     </Table>
   );
 }
+
 export default ProjectTable;

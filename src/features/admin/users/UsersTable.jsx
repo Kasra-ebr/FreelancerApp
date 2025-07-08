@@ -9,18 +9,18 @@ function UsersTable() {
 
   if (isLoading) return <Loading />;
 
-  if (!users.length) return <Empty resourceName="کاربری" />;
+  if (!users?.length) return <Empty resourceName="user" />;
 
   return (
     <Table>
       <Table.Header>
         <th>#</th>
-        <th>نام</th>
-        <th>ایمیل</th>
-        <th>شماره موبایل</th>
-        <th>نقش</th>
-        <th>وضعیت</th>
-        <th>عملیات</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone Number</th>
+        <th>Role</th>
+        <th>Status</th>
+        <th>Actions</th>
       </Table.Header>
       <Table.Body>
         {users.map((user, index) => (
